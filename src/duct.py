@@ -15,7 +15,6 @@ class Duct:
             sizes = self.size.split('-')
             widths = []
             heights = []
-            print(sizes)
             for item in sizes:
                 widths.append(int(item.split('x')[0]))
                 heights.append(int(item.split('x')[1]))
