@@ -1,5 +1,3 @@
-from duct import Duct
-
 class Category:
     def __init__(self, categoryNo, rate):
         self.categoryNo = categoryNo

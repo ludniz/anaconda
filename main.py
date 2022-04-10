@@ -1,5 +1,5 @@
-from duct import Duct
-from category import Category
+from src.duct import Duct
+from src.category import Category
 import csv
 import os
 
