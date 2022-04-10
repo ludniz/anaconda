@@ -1,5 +1,5 @@
-from duct import Duct
-from category import Category
+from src.duct import Duct
+from src.category import Category
 import csv
 import os
 
@@ -28,13 +28,13 @@ def write_CSV_file(filename):
         calculate_category_costs()
         csv_writer = csv.writer(new_file)
         csv_writer.writerow(['category', 'quantity', 'rate', 'cost'])
-        csv_writer.writerow([category1.categoryNo, round(category1.quantity), category1.rate, round(category1.cost, 2)])
-        csv_writer.writerow([category2.categoryNo, round(category2.quantity), category2.rate, round(category2.cost, 2)])
-        csv_writer.writerow([category3.categoryNo, round(category3.quantity), category3.rate, round(category3.cost, 2)])
-        csv_writer.writerow([category4.categoryNo, round(category4.quantity), category4.rate, round(category4.cost, 2)])
-        csv_writer.writerow([category5.categoryNo, round(category5.quantity), category5.rate, round(category5.cost, 2)])
+        csv_writer.writerow([category1.categoryNo, round(category1.quantity, 3), category1.rate, round(category1.cost, 2)])
+        csv_writer.writerow([category2.categoryNo, round(category2.quantity, 3), category2.rate, round(category2.cost, 2)])
+        csv_writer.writerow([category3.categoryNo, round(category3.quantity, 3), category3.rate, round(category3.cost, 2)])
+        csv_writer.writerow([category4.categoryNo, round(category4.quantity, 3), category4.rate, round(category4.cost, 2)])
+        csv_writer.writerow([category5.categoryNo, round(category5.quantity, 3), category5.rate, round(category5.cost, 2)])
         total = category1.cost + category2.cost + category3.cost + category4.cost + category5.cost
-        csv_writer.writerow(['total', round(total, 1)])
+        csv_writer.writerow(['total', round(total, 2)])
 
 def add_component_to_relevant_category(component):
     if component.category == '1':
