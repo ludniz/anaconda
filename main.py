@@ -1,4 +1,4 @@
-from src.duct import Duct
+from src.component import Component
 from src.category import Category
 import csv
 import os
@@ -20,7 +20,7 @@ def read_CSV_file(filename):
             if row['Size'] == '':
                 pass
             else:
-                component_in_row = Duct(row['Size'], row['Area'], row['Surface Area'])
+                component_in_row = Component(row['Size'], row['Area'], row['Surface Area'])
                 component_in_row.set_width_and_height()
                 component_in_row.set_duct_category()
                 add_component_to_relevant_category(component_in_row)

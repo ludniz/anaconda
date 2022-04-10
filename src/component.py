@@ -1,4 +1,4 @@
-class Duct:
+class Component:
     def __init__(self, size, area, surfaceArea):
         self.size = size
         self.area = float(self.strip_unit(area))
