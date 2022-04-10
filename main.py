@@ -68,3 +68,4 @@ for file in csv_file_list:
     read_CSV_file(os.getcwd() + '/data/' + file)
     write_CSV_file(os.getcwd() + '/output/csv/' + file[0:-4] + '(Quantified).csv')
     clear_categories()
+    
