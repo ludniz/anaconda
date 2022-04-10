@@ -1,8 +1,8 @@
 import unittest
 
-class test_duct(unittest.TestCase):
+class test_component(unittest.TestCase):
 
-    def test_duct(self):
+    def test_component(self):
         pass
 
 if __name__ == '__main__':
