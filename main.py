@@ -2,6 +2,7 @@ from src.duct import Duct
 from src.category import Category
 import csv
 import os
+import xlsxwriter
 
 csv_file_list = os.listdir(os.getcwd() + '/data')
 
@@ -12,7 +13,7 @@ category4 = Category('4', 5.00)
 category5 = Category('5', 6.00)
 
 def read_CSV_file(filename):
-    with open(filename) as csv_file:
+    with open(os.getcwd() + '/data/' + filename) as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             if row['Size'] == '':
@@ -24,7 +25,7 @@ def read_CSV_file(filename):
                 add_component_to_relevant_category(component_in_row)
 
 def write_CSV_file(filename):
-    with open(filename, 'w', newline='') as new_file:
+    with open(os.getcwd() + '/output/csv/' + filename[0:-4] + '(Quantified).csv', 'w', newline='') as new_file:
         calculate_category_costs()
         csv_writer = csv.writer(new_file)
         csv_writer.writerow(['category', 'quantity', 'rate', 'cost'])
@@ -35,6 +36,24 @@ def write_CSV_file(filename):
         csv_writer.writerow([category5.categoryNo, round(category5.quantity, 3), category5.rate, round(category5.cost, 2)])
         total = category1.cost + category2.cost + category3.cost + category4.cost + category5.cost
         csv_writer.writerow(['total', round(total, 2)])
+
+def write_Excel_file(filename):
+    workbook = xlsxwriter.Workbook(os.getcwd() + '/output/excel/' + filename[0:-4] + '(BOQ).xlsx')
+    worksheet = workbook.add_worksheet()
+    bold = workbook.add_format({'bold': True})
+
+    worksheet.write('A1', 'Item', bold)
+    worksheet.write('B1', 'Description', bold)
+    worksheet.write('C1', 'Unit', bold)
+    worksheet.write('D1', 'Quantity', bold)
+    worksheet.write('E1', 'Rate', bold)
+    worksheet.write('F1', 'Amount', bold)
+
+    worksheet.write('B3', filename[0:-4], bold)
+
+    worksheet.write('B5', )
+
+    workbook.close()
 
 def add_component_to_relevant_category(component):
     if component.category == '1':
@@ -65,6 +84,7 @@ def clear_categories():
     category5.clear_category()
 
 for file in csv_file_list:
-    read_CSV_file(os.getcwd() + '/data/' + file)
-    write_CSV_file(os.getcwd() + '/output/csv/' + file[0:-4] + '(Quantified).csv')
+    read_CSV_file(file)
+    write_CSV_file(file)
+    write_Excel_file(file)
     clear_categories()
