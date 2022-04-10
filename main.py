@@ -127,3 +127,4 @@ for file in csv_file_list:
     write_Excel_file(file)
     BOQ_component_index = BOQ_component_index + 1
     clear_categories()
+    
